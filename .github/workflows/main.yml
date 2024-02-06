@@ -36,8 +36,9 @@ jobs:
       - name: Build and push backend image
         uses: docker/build-push-action@v3
         with:
-          context: ./simple-api-student-main
-          tags: ${{secrets.DH_USERNAME}}/simple-api-student-main:latest
+          context: ./simple-api-student-main  # Chemin vers le dossier contenant le Dockerfile du backend
+          tags: ${{ secrets.DH_USERNAME }}/tp-devops-simple-api:latest
+          push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
 
       - name: Build and push database image
         uses: docker/build-push-action@v3
@@ -45,8 +46,17 @@ jobs:
           context: ./db
           tags: ${{secrets.DH_USERNAME}}/tp-devops-database:latest
 
+      - name: Build and push postgres image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./postgres  # Chemin vers le dossier contenant le Dockerfile du backend
+          tags: ${{ secrets.DH_USERNAME }}/tp-devops-postgres:latest
+          push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
+
       - name: Build and push httpd image
         uses: docker/build-push-action@v3
         with:
-          context: ./server
-          tags: ${{secrets.DH_USERNAME}}/tp-devops-httpd:latest
+          context: ./html  # Chemin vers le dossier contenant le Dockerfile du backend
+          tags: ${{ secrets.DH_USERNAME }}/tp-devops-httpd:latest
+          push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
+
