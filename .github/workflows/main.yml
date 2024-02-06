@@ -23,4 +23,4 @@ jobs:
 
       # Finally, build your app with the latest command
       - name: Build and test with Maven
-        run: mvn clean verify --file "tp1/simple-api-student-main"
+        run: mvn clean verify --file "tp1/simple-api-student-main/pom.xml"
