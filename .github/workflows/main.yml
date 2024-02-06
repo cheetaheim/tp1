@@ -49,18 +49,12 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
           push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
 
-      - name: Build and push database image
-        uses: docker/build-push-action@v3
-        with:
-          context: ./db
-          tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-database:latest
-
       - name: Build and push postgres image
         uses: docker/build-push-action@v3
         with:
-          context: ./postgres-db  # Chemin vers le dossier contenant le Dockerfile du backend
+          context: ./db  # Chemin vers le dossier contenant le Dockerfile du backend
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-postgres:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
+          push: ${{ github.ref == 'refs/heads/main' }}  
 
       - name: Build and push httpd image
         uses: docker/build-push-action@v3
