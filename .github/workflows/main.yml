@@ -24,3 +24,29 @@ jobs:
       # Finally, build your app with the latest command
       - name: Build and test with Maven
         run: mvn clean verify --file "simple-api-student-main/pom.xml"
+
+  build-and-push-docker-image:
+    needs: test-backend
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./simple-api-student-main
+          tags: ${{secrets.DH_USERNAME}}/simple-api-student-main:latest
+
+      - name: Build and push database image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./db
+          tags: ${{secrets.DH_USERNAME}}/tp-devops-database:latest
+
+      - name: Build and push httpd image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./server
+          tags: ${{secrets.DH_USERNAME}}/tp-devops-httpd:latest
