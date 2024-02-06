@@ -6,15 +6,13 @@ on:
       - main
       - develop
   pull_request:
-  
+
 jobs:
   test-backend:
     runs-on: ubuntu-22.04
     steps:
       # Checkout your GitHub code using actions/checkout@v2.5.0
       - uses: actions/checkout@v2.5.0
-        with:
-          path: /path/to/your/maven/project
 
       # Set up JDK 17 using another action (actions/setup-java@v3)
       - name: Set up JDK 17
@@ -25,7 +23,4 @@ jobs:
 
       # Finally, build your app with the latest command
       - name: Build and test with Maven
-        run: |
-          cd /path/to/your/maven/project
-          mvn clean verify
-
+        run: mvn clean verify --file "/home/ahmet/tp1/simple-api-student-main"
