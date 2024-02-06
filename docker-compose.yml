@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+
+    httpd:
+        build:
+            context: ./server      
+        ports:
+            - "9090:80"     
+        networks:
+            - app-network
+        depends_on:
+            - backend
+        container_name: httpd-container
+
+    backend:
+        build:
+            context: ./simple-api-student-main  
+            dockerfile: Dockerfile
+        environment:
+            POSTGRES_DB: "db"
+            POSTGRES_USER: "usr"  
+            POSTGRES_PASSWORD: "pwd"
+        networks:
+            - app-network
+        depends_on:
+            - database
+        container_name: simple-api-student
+
+    database:
+        image: cheetaheim/postgres-db
+        environment:
+            POSTGRES_DB: "db"
+            POSTGRES_USER: "usr"  
+            POSTGRES_PASSWORD: "pwd"
+        networks:
+            - app-network
+        container_name: postgres-db
+
+networks:
+    app-network:
