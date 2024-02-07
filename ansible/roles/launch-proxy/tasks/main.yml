@@ -3,7 +3,7 @@
     name: httpd-container
     image: cheetaheim/tp-devops-httpd:latest
     ports:
-      - "80:80"
+      - "9090:80"
     state: started
     networks:
       - name: app-network
