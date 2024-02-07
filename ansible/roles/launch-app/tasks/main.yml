@@ -1,11 +1,13 @@
 ---
 - name: Run App
-  community.general.docker_container:
+  docker_container:
     name: simple-api-student
-    image: cheetaheim/tp1-backend:latest
+    image: cheetaheim/tp-devops-simple-api:latest
     state: started
     env:
-      # Add your app-specific environment variables
+        POSTGRES_DB: "db"
+        POSTGRES_USER: "usr"  
+        POSTGRES_PASSWORD: "pwd"
     networks:
       - name: app-network
   become: true

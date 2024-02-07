@@ -1,14 +1,12 @@
----
 - name: Run Proxy
-  community.general.docker_container:
+  docker_container:
     name: httpd-container
-    image: cheetaheim/tp1-httpd:latest
+    image: cheetaheim/tp-devops-httpd:latest
+    ports:
+      - "80:80"
     state: started
-    env:
-      # Add proxy-specific environment variables
     networks:
       - name: app-network
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
-
