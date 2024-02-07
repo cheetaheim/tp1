@@ -1,42 +1,16 @@
 ---
 - name: Launch Database
   community.general.docker_container:
-    name: your_database_container_name
-    image: your_database_image:tag
+    name: postgres-db
+    image: cheetaheim/postgres-db:latest
     state: started
     env:
-      POSTGRES_USER: db
-      POSTGRES_PASSWORD: your_postgres_password
-      POSTGRES_DB: your_postgres_db
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: db
     networks:
-      - name: your_network_name
+      - name: app-network
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
 
----
-# tasks file for roles/database_setup
-# Installation de PostgreSQL
-- name: Install PostgreSQL
-  package:
-    name: postgresql
-    state: present
-
-# Copie des scripts d'initialisation
-- name: Copy initialization scripts
-  copy:
-    src: init-scripts/
-    dest: /docker-entrypoint-initdb.d/
-    mode: '0755'
-
-# Démarrage du service PostgreSQL
-- name: Start PostgreSQL container
-  docker_container:
-    name: my-postgres-db
-    image: postgres
-    ports:
-      - "5432:5432"
-    env:
-      POSTGRES_PASSWORD: "{{ postgres_password }}"
-      POSTGRES_DB: "{{ postgres_db }}" 
-      POSTGRES_USER: "{{ postgres_user }}"

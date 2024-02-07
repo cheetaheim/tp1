@@ -1,2 +1,13 @@
 ---
-# tasks file for roles/launch-app
+- name: Run App
+  community.general.docker_container:
+    name: simple-api-student
+    image: cheetaheim/tp1-backend:latest
+    state: started
+    env:
+      # Add your app-specific environment variables
+    networks:
+      - name: app-network
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

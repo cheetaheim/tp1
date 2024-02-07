@@ -1,2 +1,14 @@
 ---
-# tasks file for roles/launch-proxy
+- name: Run Proxy
+  community.general.docker_container:
+    name: httpd-container
+    image: cheetaheim/tp1-httpd:latest
+    state: started
+    env:
+      # Add proxy-specific environment variables
+    networks:
+      - name: app-network
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
