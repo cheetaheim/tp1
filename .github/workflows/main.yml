@@ -24,7 +24,7 @@ jobs:
       # Finally, build your app with the latest command
       - name: Build and test with Maven
         #run: mvn clean verify --file "simple-api-student-main/pom.xml"
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=cheetaheim -Dsonar.organization=cheetaheim -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file "simple-api-student-main/pom.xml"
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=cheetaheim_tp1 -Dsonar.organization=cheetaheim -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file "simple-api-student-main/pom.xml"
 
 
 
