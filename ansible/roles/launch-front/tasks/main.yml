@@ -5,7 +5,7 @@
     image: cheetaheim/tp-devops-frontend:latest  # Assurez-vous que le nom de l'image est correct
     state: started
     ports:
-      - "80:80"  # Mappez le port du conteneur au port de l'hôte si nécessaire
+      - "8081:80"  # Mappez le port du conteneur au port de l'hôte si nécessaire
     networks:
       - name: app-network
   become: true
