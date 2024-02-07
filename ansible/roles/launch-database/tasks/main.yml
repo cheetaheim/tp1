@@ -38,5 +38,5 @@
       - "5432:5432"
     env:
       POSTGRES_PASSWORD: "{{ postgres_password }}"
-      POSTGRES_DB: "{{ postgres_db }}"
+      POSTGRES_DB: "{{ postgres_db }}" 
       POSTGRES_USER: "{{ postgres_user }}"
