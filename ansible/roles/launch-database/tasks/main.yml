@@ -5,9 +5,9 @@
     image: cheetaheim/tp-devops-postgres:latest
     state: started
     env:
-      POSTGRES_DB: "db"
-      POSTGRES_USER: "usr"  
-      POSTGRES_PASSWORD: "pwd"
+      POSTGRES_DB: "{{ postgres_db }}"
+      POSTGRES_USER: "{{ postgres_usr }}"
+      POSTGRES_PASSWORD: "{{ postgres_pwd }}"
     networks:
       - name: app-network
   become: true

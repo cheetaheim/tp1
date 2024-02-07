@@ -4,6 +4,11 @@
   gather_facts: false
   become: yes
 
+  vars:
+    postgres_db: "db"
+    postgres_usr: "usr"
+    postgres_pwd: "pwd"
+
   roles:
     - install-docker
     - create-network
