@@ -51,6 +51,13 @@ jobs:
           context: ./simple-api-student-main  # Chemin vers le dossier contenant le Dockerfile du backend
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
           push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
+          
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v3
+        with:
+          context: ./devops-front-main  # Assurez-vous que ce chemin est correct
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-frontend:latest
+          push: ${{ github.ref == 'refs/heads/main' }}  # Pousse l'image seulement si le commit est sur la branche main
 
       - name: Build and push postgres image
         uses: docker/build-push-action@v3
