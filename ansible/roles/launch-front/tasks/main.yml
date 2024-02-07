@@ -1,0 +1,13 @@
+---
+- name: Run Front-End
+  docker_container:
+    name: devops-front
+    image: cheetaheim/tp-devops-frontend:latest  # Assurez-vous que le nom de l'image est correct
+    state: started
+    ports:
+      - "80:80"  # Mappez le port du conteneur au port de l'hôte si nécessaire
+    networks:
+      - name: app-network
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
