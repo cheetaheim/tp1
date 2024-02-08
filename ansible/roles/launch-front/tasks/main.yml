@@ -2,8 +2,10 @@
 - name: Run Front-End
   docker_container:
     name: devops-front
-    image: cheetaheim/tp-devops-frontend:latest 
+    image: cheetaheim/tp-devops-frontend:latest
     state: started
+    ports:
+      - "8081:80"  
     networks:
       - name: app-network
   become: true
