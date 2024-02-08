@@ -4,8 +4,6 @@
     name: devops-front
     image: cheetaheim/tp-devops-frontend:latest  
     state: started
-    ports:
-      - "8081:80"  
     networks:
       - name: app-network
   become: true

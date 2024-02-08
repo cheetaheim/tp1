@@ -10,7 +10,9 @@
       POSTGRES_PASSWORD: "{{ postgres_pwd }}"
     networks:
       - name: app-network
+    pull: true
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
+
 
