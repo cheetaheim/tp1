@@ -10,7 +10,7 @@
       POSTGRES_PASSWORD: "{{ postgres_pwd }}"
       POSTGRES_HOSTNAME: "{{ postgres_container }}"
       POSTGRES_PORT: "{{ postgres_port }}"
-
+ 
     networks:
       - name: app-network
     pull: true
