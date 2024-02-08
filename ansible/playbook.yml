@@ -8,6 +8,8 @@
     postgres_db: "db"
     postgres_usr: "usr"
     postgres_pwd: "pwd"
+    postgres_container: "postgres-db"
+    postgres_port: "5432"
 
   roles:
     - install-docker

@@ -1,7 +1,7 @@
 ---
 - name: Launch Database
   docker_container:
-    name: postgres-db
+    name: "{{ postgres_container }}"
     image: cheetaheim/tp-devops-postgres:latest
     state: started
     env:
